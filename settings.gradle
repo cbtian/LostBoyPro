@@ -1,1 +1,1 @@
-include ':app', ':lostboylib'
+include ':lostboy_sample', ':lostboylib'
