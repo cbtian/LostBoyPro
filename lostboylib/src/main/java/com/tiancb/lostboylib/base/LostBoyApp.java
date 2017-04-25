@@ -9,7 +9,9 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.tiancb.lostboylib.https.OkHttpUtils;
 import com.tiancb.lostboylib.https.httputils.HttpsUtils;
+import com.tiancb.lostboylib.https.interceptor.CacheInterceptor;
 import com.tiancb.lostboylib.https.log.LoggerInterceptor;
+import com.tiancb.lostboylib.https.provide.CacheProvide;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,10 +27,10 @@ import okhttp3.OkHttpClient;
 
 public class LostBoyApp extends Application {
 
-    public LostBoyApp() {
-        super();
+    private static LostBoyApp instance;
+    public static LostBoyApp getInstance() {
+        return instance;
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -56,6 +58,7 @@ public class LostBoyApp extends Application {
     }
 
     public void initSdk() {
+        instance = this;
         initHttpUtils();
     }
     /**
@@ -64,19 +67,24 @@ public class LostBoyApp extends Application {
     /**
      * http://blog.csdn.net/u010286855/article/details/52608485   需要继续完善okhttpClient设置
      * 需要添加addNetworkInterceptor和网络超时设置
+     *
+     * PersistentCookieStore //持久化cookie
+     * SerializableHttpCookie //持久化cookie
+     * MemoryCookieStore //cookie信息存在内存中
      */
 
     private void initHttpUtils() {
-        //PersistentCookieStore //持久化cookie
-        //SerializableHttpCookie //持久化cookie
-        //MemoryCookieStore //cookie信息存在内存中
+
         ClearableCookieJar cookieJar1 = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(getApplicationContext()));
         HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
-       //CookieJarImpl cookieJar1 = new CookieJarImpl(new MemoryCookieStore());
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
                 .addInterceptor(new LoggerInterceptor("TAG"))
+                .addNetworkInterceptor(new CacheInterceptor())//添加网络拦截器
+                .cache(new CacheProvide(getApplicationContext()).provideCache())//添加缓存路径
                 .cookieJar(cookieJar1)
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override
@@ -88,5 +96,6 @@ public class LostBoyApp extends Application {
                 .build();
         OkHttpUtils.initClient(okHttpClient);
     }
+
 
 }

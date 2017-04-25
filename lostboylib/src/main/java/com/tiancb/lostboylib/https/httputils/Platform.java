@@ -19,6 +19,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.tiancb.lostboylib.utils.TLog;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -29,7 +31,7 @@ public class Platform {
     private static final Platform PLATFORM = findPlatform();
 
     public static Platform get() {
-        L.e(PLATFORM.getClass().toString());
+        TLog.log(PLATFORM.getClass().toString());
         return PLATFORM;
     }
 

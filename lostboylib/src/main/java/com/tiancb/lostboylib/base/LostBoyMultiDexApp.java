@@ -10,7 +10,9 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.tiancb.lostboylib.https.OkHttpUtils;
 import com.tiancb.lostboylib.https.httputils.HttpsUtils;
+import com.tiancb.lostboylib.https.interceptor.CacheInterceptor;
 import com.tiancb.lostboylib.https.log.LoggerInterceptor;
+import com.tiancb.lostboylib.https.provide.CacheProvide;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,10 +27,10 @@ import okhttp3.OkHttpClient;
  */
 
 public class LostBoyMultiDexApp extends MultiDexApplication {
-    public LostBoyMultiDexApp() {
-        super();
+    private static LostBoyMultiDexApp instance;
+    public static LostBoyMultiDexApp getInstance() {
+        return instance;
     }
-
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -61,6 +63,7 @@ public class LostBoyMultiDexApp extends MultiDexApplication {
     }
 
     public void initSdk(){
+        instance = this;
         initHttpUtils();
     }
 
@@ -78,6 +81,8 @@ public class LostBoyMultiDexApp extends MultiDexApplication {
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .addInterceptor(new LoggerInterceptor("TAG"))
+                .addNetworkInterceptor(new CacheInterceptor())//添加网络拦截器
+                .cache(new CacheProvide(getApplicationContext()).provideCache())//添加缓存路径
                 .cookieJar(cookieJar1)
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override
