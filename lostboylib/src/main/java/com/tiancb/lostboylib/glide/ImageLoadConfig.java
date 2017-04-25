@@ -44,6 +44,8 @@ public class ImageLoadConfig {
     private boolean blur;//高斯模糊处理
     private boolean rotate;//旋转图片
     private int rotateDegree;//默认旋转°
+    private int roundedCorner;//默认圆角度数
+    private int bulr;
     private String tag; //唯一标识
     /**
      * 硬盘缓存策略
@@ -109,7 +111,9 @@ public class ImageLoadConfig {
         this.grayscale = builder.grayscale;
         this.rotate =builder.rotate;
         this.rotateDegree = builder.rotateDegree;
-        this.tag = tag;
+        this.roundedCorner = builder.roundedCorner;
+        this.bulr = builder.bulr;
+        this.tag = builder.tag;
     }
     /**
      *Builder类
@@ -140,7 +144,19 @@ public class ImageLoadConfig {
         private boolean blur;
         private boolean rotate;
         private int rotateDegree =90;
+        private int roundedCorner;
+        private int bulr;
         private String tag;
+
+        public Builder setbulr(int bulr) {
+            this.bulr = bulr;
+            return this;
+        }
+
+        public Builder setRoundedCorner(int roundedCorner) {
+            this.roundedCorner = roundedCorner;
+            return this;
+        }
 
         public Builder setPlaceHolderResId(Integer placeHolderResId) {
             this.placeHolderResId = placeHolderResId;
@@ -305,6 +321,8 @@ public class ImageLoadConfig {
         builder.rotate = config.rotate;
         builder.rotateDegree =config.rotateDegree;
         builder.tag = config.tag;
+        builder.roundedCorner = config.roundedCorner;
+        builder.bulr = config.bulr;
         return builder;
     }
 
@@ -411,6 +429,16 @@ public class ImageLoadConfig {
     public String getTag() {
         return tag;
     }
+
+    public int getRoundedCorner() {
+        return roundedCorner;
+    }
+
+    public int getBulr() {
+        return bulr;
+    }
+
+
 
     /**
      * 图片最终显示在ImageView上的宽高像素

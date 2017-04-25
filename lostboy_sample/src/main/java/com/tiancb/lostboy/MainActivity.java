@@ -20,18 +20,26 @@ public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.text)
     ImageView text;
     String url = "http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-      final  ImageLoadConfig imageLoadConfig = new ImageLoadConfig.Builder().
+        final ImageLoadConfig imageLoadConfig = new ImageLoadConfig.Builder().
                 setCropType(ImageLoadConfig.CENTER_CROP).
-                setAsBitmap(true).
-            setPlaceHolderResId(R.mipmap.ic_launcher).
-            setErrorResId(R.mipmap.ic_launcher).
-        setDiskCacheStrategy(ImageLoadConfig.DiskCache.SOURCE).
-                        setPrioriy(ImageLoadConfig.LoadPriority.HIGH).build();
+//                setAsBitmap(true).
+                setPlaceHolderResId(R.mipmap.ic_launcher).
+                setErrorResId(R.mipmap.ic_launcher).
+                setDiskCacheStrategy(ImageLoadConfig.DiskCache.SOURCE).
+                setPrioriy(ImageLoadConfig.LoadPriority.HIGH).
+//                setBlur(true).
+//                setbulr(8).
+//                setCropCircle(true).
+//                setCropType(ImageLoadConfig.CENTER_CROP).
+//                setCrossFade(true).
+//                        setCrossDuration(1000).
+                build();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
 //                        .execute(new MyCallBack());
             }
         });
-
-
-
 
 
     }

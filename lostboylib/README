@@ -19,5 +19,7 @@
     a.参考博客 http://blog.csdn.net/shangmingchao/article/details/51125554
               http://blog.csdn.net/shangmingchao/article/details/51172972
               http://blog.csdn.net/guolin_blog/article/details/53759439
+    b.经测试Transformation 下的几种状态只能同时设置一种，比如圆角和高斯模糊不能同时存在
 3、Android 相册操作
+
 

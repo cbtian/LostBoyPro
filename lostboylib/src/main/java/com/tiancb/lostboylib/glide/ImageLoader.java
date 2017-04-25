@@ -106,20 +106,20 @@ public class ImageLoader {
                 }
                 //transform bitmap
                 if (config.isRoundedCorners()) {
-                    request.transform(new RoundedCornersTransformation(context, 50, 50));
+                    request.transform(new RoundedCornersTransformation(context, config.getRoundedCorner(), config.getRoundedCorner()));
                 } else if (config.isCropCircle()) {
                     request.transform(new CropCircleTransformation(context));
                 } else if (config.isGrayscale()) {
                     request.transform(new GrayscaleTransformation(context));
                 } else if (config.isBlur()) {
-                    request.transform(new BlurTransformation(context, 8, 8));
+                    request.transform(new BlurTransformation(context, config.getBulr(), config.getBulr()));
                 } else if (config.isRotate()) {
 
                     request.transform(new RotateTransformation(context, config.getRotateDegree()));
                 }
                 builder = request;
             } else if (config.isCrossFade()) { // 渐入渐出动画
-                DrawableRequestBuilder request = Glide.with(context).load(objUrl).crossFade();
+                DrawableRequestBuilder request = Glide.with(context).load(objUrl).crossFade().crossFade(config.getCrossDuration());
                 if (config.getCropType() == ImageLoadConfig.CENTER_CROP) {
                     request.centerCrop();
                 } else {
