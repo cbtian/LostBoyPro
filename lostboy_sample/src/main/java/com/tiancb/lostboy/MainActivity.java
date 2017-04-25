@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.tiancb.lostboylib.https.OkHttpUtils;
 import com.tiancb.lostboylib.https.callback.StringCallback;
-import com.tiancb.lostboylib.utils.TLog;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -31,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 OkHttpUtils
                         .get()
-                        .url("http://www.jianshu.com/p/1ef0ba0bccc6")
+                        .addHeader("Cache-Time","1000")
+                        .url("http://www.391k.com/api/xapi.ashx/info.json?key=bd_hyrzjjfb4modhj&size=10&page=1")
                         .build()
                         .execute(new MyCallBack());
             }
@@ -41,13 +41,11 @@ public class MainActivity extends AppCompatActivity {
     public class MyCallBack extends StringCallback{
         @Override
         public void onError(Call call, Exception e, int id) {
-            TLog.log("onError = " + e.getMessage());
             text.setText("onError = " + e.getMessage());
         }
 
         @Override
         public void onResponse(String response, int id) {
-            TLog.log("onResponse = " + response);
             text.setText("onResponse = " + response);
         }
     }

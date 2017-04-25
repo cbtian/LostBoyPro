@@ -1,5 +1,6 @@
 package com.tiancb.lostboy;
 
+import com.tiancb.lostboylib.Config;
 import com.tiancb.lostboylib.base.LostBoyApp;
 
 /**
@@ -10,5 +11,7 @@ public class App extends LostBoyApp{
     @Override
     public void onCreate() {
         super.onCreate();
+        Config.debugLog();
+
     }
 }

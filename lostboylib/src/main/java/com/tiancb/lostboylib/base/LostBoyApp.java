@@ -7,6 +7,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.tiancb.lostboylib.Config;
 import com.tiancb.lostboylib.https.OkHttpUtils;
 import com.tiancb.lostboylib.https.httputils.HttpsUtils;
 import com.tiancb.lostboylib.https.interceptor.CacheInterceptor;
@@ -61,6 +62,15 @@ public class LostBoyApp extends Application {
         instance = this;
         initHttpUtils();
     }
+
+    /**
+     * 是否显示debug log 和 Toast,true开启,false不开启,默认为true
+     * @param isDebug
+     */
+    public void isDebug(boolean isDebug){
+        Config.DEBUG = isDebug;
+        Config.ConfigInit();
+    }
     /**
      * 初始化okhttps
      */
@@ -82,7 +92,7 @@ public class LostBoyApp extends Application {
                 .retryOnConnectionFailure(true)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
-                .addInterceptor(new LoggerInterceptor("TAG"))
+                .addInterceptor(new LoggerInterceptor("tiancb"))
                 .addNetworkInterceptor(new CacheInterceptor())//添加网络拦截器
                 .cache(new CacheProvide(getApplicationContext()).provideCache())//添加缓存路径
                 .cookieJar(cookieJar1)

@@ -12,12 +12,24 @@ import com.tiancb.lostboylib.base.LostBoyMultiDexApp;
  */
 
 public class ToastUtils {
+    public static boolean DEBUG = true;
+
     private static Handler handler = new Handler(Looper.getMainLooper());
 
     private static Toast toast = null;
 
     private static Object synObj = new Object();
 
+    /**
+     * 用于调试的时候显示数据
+     * @param msg
+     */
+    public static void showDebugMessage(final String msg){
+        if (DEBUG){
+            showMessage(msg);
+        }
+
+    }
     public static void showMessage(final String msg) {
         showMessage(msg, Toast.LENGTH_SHORT);
     }

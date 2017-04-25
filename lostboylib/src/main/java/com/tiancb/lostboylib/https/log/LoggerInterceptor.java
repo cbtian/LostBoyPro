@@ -18,7 +18,7 @@ import okio.Buffer;
  * Created by tiancb on 2017/4/24.
  */
 public class LoggerInterceptor implements Interceptor {
-    public static final String TAG = "OkHttpUtils";
+    public static final String TAG = "tiancb";
     private String tag;
     private boolean showResponse;
 
@@ -85,7 +85,6 @@ public class LoggerInterceptor implements Interceptor {
         try {
             String url = request.url().toString();
             Headers headers = request.headers();
-
             Log.e(tag, "========request'log=======");
             Log.e(tag, "method : " + request.method());
             Log.e(tag, "url : " + url);

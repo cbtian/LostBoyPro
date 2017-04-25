@@ -3,6 +3,8 @@ package com.tiancb.lostboylib.https.request;
 
 import com.tiancb.lostboylib.https.callback.Callback;
 import com.tiancb.lostboylib.https.httputils.Exceptions;
+import com.tiancb.lostboylib.utils.TLog;
+import com.tiancb.lostboylib.utils.ToastUtils;
 
 import java.util.Map;
 
@@ -33,7 +35,15 @@ public abstract class OkHttpRequest {
         if (url == null) {
             Exceptions.illegalArgument("url can not be null.");
         }
-
+        String string = "http请求  url = " + url;
+        if (params != null){
+            string = string+", 参数 = " + params.toString();
+        }else if (tag != null){
+            string = string+", tag = "+ tag;
+        }
+        string = string +", id = "+ id;
+        TLog.error(string);
+        ToastUtils.showDebugMessage(string);
         initBuilder();
     }
 

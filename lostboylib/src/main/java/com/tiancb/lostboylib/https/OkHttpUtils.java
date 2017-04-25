@@ -9,6 +9,8 @@ import com.tiancb.lostboylib.https.builder.PostStringBuilder;
 import com.tiancb.lostboylib.https.callback.Callback;
 import com.tiancb.lostboylib.https.httputils.Platform;
 import com.tiancb.lostboylib.https.request.RequestCall;
+import com.tiancb.lostboylib.utils.TLog;
+import com.tiancb.lostboylib.utils.ToastUtils;
 
 import java.io.IOException;
 import java.util.concurrent.Executor;
@@ -120,6 +122,9 @@ public class OkHttpUtils {
                     }
 
                     Object o = finalCallback.parseNetworkResponse(response, id);
+                    String string = "http 请求结果 = " + o.toString();
+                    TLog.error(string);
+                    ToastUtils.showDebugMessage(string);
                     sendSuccessResultCallback(o, finalCallback, id);
                 } catch (Exception e) {
                     sendFailResultCallback(call, e, finalCallback, id);
