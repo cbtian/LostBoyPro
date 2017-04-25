@@ -21,7 +21,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions{
+    lintOptions {
         abortOnError false
         warning 'InvalidPackage'
     }
@@ -29,12 +29,15 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
-//    testCompile 'junit:junit:4.12'
-    compile 'com.squareup.okhttp3:okhttp:3.7.0'
-    compile 'com.github.franmontiel:PersistentCookieJar:v0.9.3'
+    //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    //        exclude group: 'com.android.support', module: 'support-annotations'
+    //    })
+    //    testCompile 'junit:junit:4.12'
+
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'//okhttp库
+    compile 'com.github.franmontiel:PersistentCookieJar:v0.9.3'//cookie库 okhttp中所需要的
+    compile 'com.github.bumptech.glide:glide:3.7.0'//图片加载 和
+    compile 'jp.wasabeef:glide-transformations:2.0.2'//对图片进行裁剪、模糊、滤镜等处理的库
 }
 
 //task clearJar(type: Delete) {

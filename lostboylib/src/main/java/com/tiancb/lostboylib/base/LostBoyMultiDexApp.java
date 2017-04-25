@@ -80,7 +80,7 @@ public class LostBoyMultiDexApp extends MultiDexApplication {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                .addInterceptor(new LoggerInterceptor("TAG"))
+                .addInterceptor(new LoggerInterceptor("tiancb"))
                 .addNetworkInterceptor(new CacheInterceptor())//添加网络拦截器
                 .cache(new CacheProvide(getApplicationContext()).provideCache())//添加缓存路径
                 .cookieJar(cookieJar1)

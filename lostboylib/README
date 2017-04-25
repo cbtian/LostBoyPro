@@ -1,2 +1,23 @@
 自己封装一个library，方便自己在今后的项目中使用，大致会包括一下内容
+在自己的app中继承LostBoyApp或者LostBoyMultiDexApp就能直接初始化app了
 1、okhttp封装的网络请求类
+    a.直接使用OkHttpUtils类中的方法即可进行网络请求
+    b.提交一个Gson字符串到服务器端，注意：传递JSON的时候，不要通过addHeader去设置contentType，而使用`.mediaType(MediaType.parse("application/json; charset=utf-8"))`.。
+
+    ## 目前对以下需求进行了封装
+    * 一般的get请求
+    * 一般的post请求
+    * 基于Http Post的文件上传（类似表单）
+    * 文件下载/加载图片
+    * 上传下载的进度回调
+    * 支持取消某个请求
+    * 支持自定义Callback
+    * 支持HEAD、DELETE、PATCH、PUT
+    * 支持session的保持
+    * 支持自签名网站https的访问，提供方法设置下证书就行
+2、Glide的基本用法
+    a.参考博客 http://blog.csdn.net/shangmingchao/article/details/51125554
+              http://blog.csdn.net/shangmingchao/article/details/51172972
+              http://blog.csdn.net/guolin_blog/article/details/53759439
+3、Android 相册操作
+
