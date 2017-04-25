@@ -8,6 +8,7 @@ import com.tiancb.lostboylib.utils.ToastUtils;
  */
 
 public class Config {
+    public static String IMG_DIR = "LostBoy";
     public static boolean DEBUG = true;
     public static void ConfigInit(){
         if (DEBUG){

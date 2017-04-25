@@ -38,6 +38,7 @@ dependencies {
     compile 'com.github.franmontiel:PersistentCookieJar:v0.9.3'//cookie库 okhttp中所需要的
     compile 'com.github.bumptech.glide:glide:3.7.0'//图片加载 和
     compile 'jp.wasabeef:glide-transformations:2.0.2'//对图片进行裁剪、模糊、滤镜等处理的库
+    compile 'com.android.support:support-v4:25.0.1'//glide需要v4包的支持
 }
 
 //task clearJar(type: Delete) {
