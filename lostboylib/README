@@ -20,6 +20,12 @@
               http://blog.csdn.net/shangmingchao/article/details/51172972
               http://blog.csdn.net/guolin_blog/article/details/53759439
     b.经测试Transformation 下的几种状态只能同时设置一种，比如圆角和高斯模糊不能同时存在
-3、Android 相册操作
+3、数据库操作
+    a、参考源码 https://github.com/LitePalFramework/LitePal
+
+4、Android 相册操作
+    a、cn.finalteam:galleryfinal:1.4.8.4
+5、Crash追踪体系（bugly）
+6、
 
 
